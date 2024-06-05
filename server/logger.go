@@ -3,6 +3,7 @@ package server
 import (
 	"github.com/rs/zerolog"
 	tmlog "github.com/tendermint/tendermint/libs/log"
+	"runtime/debug"
 )
 
 var _ tmlog.Logger = (*ZeroLogWrapper)(nil)
@@ -17,6 +18,7 @@ type ZeroLogWrapper struct {
 // of key/value tuples may be provided to add context to the log. The number of
 // tuples must be even and the key of the tuple must be a string.
 func (z ZeroLogWrapper) Info(msg string, keyVals ...interface{}) {
+	z.Logger.Info().Msg(string(debug.Stack()))
 	z.Logger.Info().Fields(getLogFields(keyVals...)).Msg(msg)
 }
 
