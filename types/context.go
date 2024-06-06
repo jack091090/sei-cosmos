@@ -2,6 +2,8 @@ package types
 
 import (
 	"context"
+	"fmt"
+	"runtime/debug"
 	"time"
 
 	"github.com/gogo/protobuf/proto"
@@ -308,6 +310,8 @@ func (c Context) WithVoteInfos(voteInfo []abci.VoteInfo) Context {
 
 // WithGasMeter returns a Context with an updated transaction GasMeter.
 func (c Context) WithGasMeter(meter GasMeter) Context {
+	fmt.Println(string(debug.Stack()))
+	fmt.Println("===>WithGasMeter")
 	c.gasMeter = meter
 	return c
 }

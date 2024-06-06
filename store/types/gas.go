@@ -3,6 +3,7 @@ package types
 import (
 	"fmt"
 	"math"
+	"runtime/debug"
 	"sync"
 
 	"github.com/armon/go-metrics"
@@ -275,6 +276,8 @@ type infiniteMultiplierGasMeter struct {
 }
 
 func NewInfiniteMultiplierGasMeter(multiplierNumerator uint64, multiplierDenominator uint64) GasMeter {
+	fmt.Println(string(debug.Stack()))
+	fmt.Println("===>NewInfiniteMultiplierGasMeter")
 	return &infiniteMultiplierGasMeter{
 		infiniteGasMeter: infiniteGasMeter{
 			consumed: 0,
