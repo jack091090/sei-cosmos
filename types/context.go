@@ -3,6 +3,7 @@ package types
 import (
 	"context"
 	"fmt"
+	"reflect"
 	"runtime/debug"
 	"time"
 
@@ -311,7 +312,11 @@ func (c Context) WithVoteInfos(voteInfo []abci.VoteInfo) Context {
 // WithGasMeter returns a Context with an updated transaction GasMeter.
 func (c Context) WithGasMeter(meter GasMeter) Context {
 	fmt.Println(string(debug.Stack()))
-	fmt.Println("===>WithGasMeter")
+	fmt.Println("===>WithGasMeter", meter)
+	if meter != nil {
+		numerator, denominator := meter.Multiplier()
+		fmt.Println("===>WithGasMeter", reflect.TypeOf(meter), numerator, denominator)
+	}
 	c.gasMeter = meter
 	return c
 }

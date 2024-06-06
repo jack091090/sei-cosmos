@@ -277,7 +277,7 @@ type infiniteMultiplierGasMeter struct {
 
 func NewInfiniteMultiplierGasMeter(multiplierNumerator uint64, multiplierDenominator uint64) GasMeter {
 	fmt.Println(string(debug.Stack()))
-	fmt.Println("===>NewInfiniteMultiplierGasMeter")
+	fmt.Println("===>NewInfiniteMultiplierGasMeter multiplierDenominator", multiplierDenominator)
 	return &infiniteMultiplierGasMeter{
 		infiniteGasMeter: infiniteGasMeter{
 			consumed: 0,
